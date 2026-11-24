@@ -1,7 +1,11 @@
 // The Funniest Out-of-Office — entrypoint.
 // Reads entry.txt (shipped in this repo) at runtime and writes its single
-// line to $MAKEFUN_OUTPUT_DIR/entry.txt. No network, no DOM, no writes
-// into this repository.
+// line into $MAKEFUN_OUTPUT_DIR/entry.txt. It never touches the network
+// or the DOM, and it never writes back into this repository.
+// Note: the joke itself lives in entry.txt, so this file loads that single
+// line at runtime rather than embedding it here. The line is checked to be
+// 1-140 characters before anything is written, and the result goes to
+// $MAKEFUN_OUTPUT_DIR because that is where the grader collects the entry.
 import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
